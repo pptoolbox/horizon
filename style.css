@@ -90,7 +90,7 @@ html, body {
 }
 #weather-settings {
   position: fixed;
-  top: 39px; right: 33px;
+  bottom: 20px; right: 25px;
   /* margin-top: 58px; */
   font-size: 14px;
   cursor: pointer;
@@ -159,7 +159,7 @@ html, body {
 /* ── Bing Attribution ── */
 #bing-credit {
   position: fixed;
-  bottom: 14px; right: 18px;
+  bottom: 14px; left: 18px;
   font-size: 10px;
   color: rgba(255,255,255,0.45);
   letter-spacing: 0.3px;
