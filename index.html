@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>New Tab</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Tab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="clock-container">
-        <div class="time" id="time"></div>
-        <hr>
-        <div class="date" id="date"></div>
+
+<div id="bg"></div>
+
+<!-- Weather -->
+<div id="weather">
+  <span id="weather-loading">Loading weather…</span>
+</div>
+<div id="weather-settings" title="Set location manually">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+    <circle cx="12" cy="9" r="2.5"/>
+  </svg>
+</div>
+
+<div id="location-modal">
+  <div id="modal-box">
+    <div id="modal-title">Set Location</div>
+    <input id="lat-input" type="number" step="any" placeholder="Latitude (e.g. 26.1445)" />
+    <input id="lon-input" type="number" step="any" placeholder="Longitude (e.g. 91.7362)" />
+    <input id="city-input" type="text" placeholder="City name (e.g. Guwahati)" />
+    <div id="modal-btns">
+      <button id="modal-cancel">Cancel</button>
+      <button id="modal-save">Save</button>
+      <button id="modal-auto">Use GPS</button>
     </div>
-    <button id="bg-upload-btn" title="Change Background"></button>
-    <input type="file" id="bg-upload-input" accept="image/*" style="display:none;">
-    <script src="script.js"></script>
+  </div>
+</div>
+
+<!-- Main content -->
+<div id="app">
+  <div class="clock-container">
+    <div class="time" id="time"></div>
+    <hr>
+    <div class="date" id="date"></div>
+  </div>
+</div>
+
+
+<!-- Bing photo credit -->
+<div id="bing-credit">
+  <span id="bing-title"></span> &mdash; <a id="bing-link" href="https://www.bing.com" target="_blank">Bing</a>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
