@@ -31,40 +31,28 @@ async function loadBingBackground() {
     encodeURIComponent('https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-IN');
 
   try {
-    const res = await fetch(proxyUrl);
-    const outer = await res.json();
-    const data = JSON.parse(outer.contents);
-    const img = data.images[0];
-    const url = 'https://www.bing.com' + img.url;
-    const title = img.title || img.copyright || '';
+    const res = await fetch(
+      "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-IN"
+    );
 
-    // Preload
-    const image = new Image();
-    image.onload = () => {
-      document.getElementById('bg').style.backgroundImage = `url("${url}")`;
-    };
-    image.src = url;
+    const data = await res.json();
+    const img = data.images[0];
+
+    const url = "https://www.bing.com" + img.url;
+
+    document.getElementById("bg").style.backgroundImage = `url("${url}")`;
 
     // Attribution
-    const titleEl = document.getElementById('bing-title');
-    const linkEl  = document.getElementById('bing-link');
-    if (title) titleEl.textContent = title.split(' (')[0];
-    if (img.copyrightlink) linkEl.href = img.copyrightlink;
+    if (img.title) {
+      document.getElementById("bing-title").textContent =
+        img.title.split(" (")[0];
+    }
+    if (img.copyrightlink) {
+      document.getElementById("bing-link").href = img.copyrightlink;
+    }
 
   } catch (e) {
-    // Fallback: try direct (works in some Chromium builds w/ CORS relaxed for extensions)
-    try {
-      const res2 = await fetch(
-        'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-IN'
-      );
-      const data2 = await res2.json();
-      const img2 = data2.images[0];
-      const url2 = 'https://www.bing.com' + img2.url;
-      document.getElementById('bg').style.backgroundImage = `url("${url2}")`;
-      if (img2.title) document.getElementById('bing-title').textContent = img2.title.split(' (')[0];
-    } catch (e2) {
-      // Keep the dark gradient fallback
-    }
+    console.error("Bing fetch failed:", e);
   }
 }
 
