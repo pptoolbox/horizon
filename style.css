@@ -17,7 +17,7 @@ html, body {
 /* ── Background ── */
 #bg {
   position: fixed; inset: 0;
-  background: #1a1a2e;
+  background: #202326;
   background-size: cover;
   background-position: center;
   transition: opacity 1.2s ease;
